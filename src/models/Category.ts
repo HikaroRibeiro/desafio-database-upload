@@ -1,4 +1,5 @@
-import {Entity,Column,PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn, BeforeUpdate } from 'typeorm';
+import {Entity,Column,PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn, BeforeUpdate, OneToMany } from 'typeorm';
+import Transaction from './Transaction';
 
 @Entity('categories')
 class Category {
@@ -14,6 +15,8 @@ class Category {
   @UpdateDateColumn()
   updated_at: Date;
 
+  @OneToMany(() => Transaction, transaction => transaction.category)
+  transaction: Transaction;
 }
 
 export default Category;
